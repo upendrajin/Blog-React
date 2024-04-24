@@ -12,7 +12,7 @@ const Blog = () => {
 
   const getBlogone = () => {
     axios
-      .get("https://blog-node-x3z2.onrender.com/blog/findone/" + id)
+      .get("https://blog-node-maj0.onrender.com/blog/findone/" + id)
       .then((res) => {
         console.log(res.data.data);
         setData(res.data.data);
@@ -25,7 +25,7 @@ const Blog = () => {
   // delete
   const Delet = (id) => {
     axios
-      .delete("https://blog-node-x3z2.onrender.com/blog/delete/" + id)
+      .delete("https://blog-node-maj0.onrender.com/blog/delete/" + id)
       .then((res) => {
         console.log(res.data.data);
         history.push("/");
@@ -80,7 +80,7 @@ const Blog = () => {
                 <img
                   width="70%"
                   src={
-                    "https://blog-node-x3z2.onrender.com/images/" + data.image
+                    "https://blog-node-maj0.onrender.com/images/" + data.image
                   }
                   alt=""
                 />

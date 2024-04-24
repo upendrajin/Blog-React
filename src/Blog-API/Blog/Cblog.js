@@ -18,7 +18,7 @@ const Cblog = () => {
 
   function update(id) {
     axios
-      .get("https://blog-node-x3z2.onrender.com/contact/findone/" + id)
+      .get("https://blog-node-maj0.onrender.com/contact/findone/" + id)
       .then((res) => {
         setInitialValues(res.data.data);
         setRow(id);
@@ -35,7 +35,7 @@ const Cblog = () => {
     form.append("description", values.description);
 
     axios
-      .post("https://blog-node-x3z2.onrender.com/blog/create", form, {
+      .post("https://blog-node-maj0.onrender.com/blog/create", form, {
         headers: {
           usertoken: usertoken,
           "Content-Type": "multipart/form-data",

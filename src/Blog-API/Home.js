@@ -15,7 +15,7 @@ const Home = () => {
 
   const getBlog = () => {
     axios
-      .get("https://blog-node-x3z2.onrender.com/blog/find")
+      .get("https://blog-node-maj0.onrender.com/blog/find")
       .then((res) => {
         console.log(res.data.data);
         setBlog(res.data.data);
@@ -76,7 +76,7 @@ const Home = () => {
               blog.map((el, index) => {
                 return <div className="col-lg-4 position-relative img-hov" key={index}>
                   <div className=''>
-                    <img width="100%" className='' onClick={() => card(el._id)} src={'https://blog-node-x3z2.onrender.com/images/' + el.image} alt="" />
+                    <img width="100%" className='' onClick={() => card(el._id)} src={'https://blog-node-maj0.onrender.com/images/' + el.image} alt="" />
                   </div>
                   <div className='pos-ab-1 text-center '>
                     <h3 className='mt-2 '>{el.title}</h3>
@@ -108,7 +108,7 @@ const Home = () => {
                           className=""
                           onClick={() => card(el._id)}
                           src={
-                            "https://blog-node-x3z2.onrender.com/images/" +
+                            "https://blog-node-maj0.onrender.com/images/" +
                             el.image
                           }
                           alt=""
