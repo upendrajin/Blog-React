@@ -1,126 +1,129 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { Button, Container, Row } from 'react-bootstrap';
 
 import { FaArrowLeftLong } from "react-icons/fa6";
-import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+
+import Slider from "react-slick";
+import ss1 from '../../BLog Img/slider1.png'
+import ss2 from '../../BLog Img/slider2.png'
+import ss3 from '../../BLog Img/slider3.png'
 
 const Blog = () => {
-  const history = useHistory();
-  const [data, setData] = useState([]);
 
-  let id = localStorage.getItem("blogid");
+  const history = useHistory()
+  const [data, setData] = useState([])
+
+
+  let id = localStorage.getItem('blogid')
 
   const getBlogone = () => {
-    axios
-      .get("https://blog-node-maj0.onrender.com/blog/findone/" + id)
+    axios.get('https://blog-api-dzjv.onrender.com/blog/findone/' + id)
       .then((res) => {
         console.log(res.data.data);
-        setData(res.data.data);
+        setData(res.data.data)
       })
       .catch((error) => {
-        alert(error.response.data.message);
-      });
-  };
+        alert(error.response.data);
+      })
+  }
 
   // delete
   const Delet = (id) => {
-    axios
-      .delete("https://blog-node-maj0.onrender.com/blog/delete/" + id)
+    axios.delete('https://blog-api-dzjv.onrender.com/blog/delete/' + id)
       .then((res) => {
         console.log(res.data.data);
-        history.push("/");
+        history.push('/')
       })
       .catch((error) => {
         alert(error.response.data.message);
-      });
-  };
+      })
+  }
 
-  // Update
+  // update
   const Update = (id) => {
-    history.push("/blog/create");
-  };
+    console.log("id :- ", id);
+    localStorage.setItem('updateId', id)
+    history.push('/blog/create')
+  }
+
+
 
   useEffect(() => {
-    getBlogone();
-  }, []);
+    getBlogone()
+  }, [])
+
+  const settings = {
+    infinite: true,
+    slidesToShow: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    speed: 2000,
+    slidesToScroll: 1
+  };
 
   return (
     <div>
-      {/* Main IMG */}
-      <div className=" mb-5 p-0">
-        <div className="container-fluid mb-5 position-relative d-block">
-          <div className="row align-items-center">
-            <div className="p-0 img">
-              <img
-                width="100%"
-                height="100%"
-                src="https://static.wixstatic.com/media/baac51_d623fe1790ed419a89d20aa05f6064b2.jpg/v1/fill/w_1349,h_500,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/baac51_d623fe1790ed419a89d20aa05f6064b2.jpg"
-                alt=""
-              />
-            </div>
-          </div>
-        </div>
 
-        <div className="container-fluid pos-ab">
-          <div className="row align-items-center">
-            <div className="p-0">
-              <h1 className="fs-60 fs-sm-6">
-                DESIGN <span className="fs-2 fs-sm-6 for">FOR</span> LIFE
-              </h1>
+      {/* Main IMG */}
+      {/* <Container fluid>
+        <Row>
+          <div className="p-0 img mt-5">
+            <div className="text-center pt-5">
+              <h1 className='fs-60 fs-sm-6'>DESIGN <span className='fs-2 fs-sm-6 for'>FOR</span> LIFE</h1>
             </div>
           </div>
-        </div>
-      </div>
+        </Row>
+      </Container> */}
+
+<Container fluid className='mt-15'>
+        <Row>
+          <div className="slider-container p-0">
+            <Slider {...settings}>
+              <div className=''>
+                <img width="100%" src={ss1} alt="" />
+              </div>
+              <div className=''>
+                <img width="100%" src={ss2} alt="" />
+              </div>
+              <div className=''>
+                <img width="100%" src={ss3} alt="" />
+              </div>
+            </Slider>
+          </div>
+        </Row>
+      </Container>
+
 
       <div className="container-fluid p-0">
         <div className="container">
           <div className="row">
             <div className="col-12 p-5">
-              <div className="mb-3 text-center">
-                <img
-                  width="70%"
-                  src={
-                    "https://blog-node-maj0.onrender.com/images/" + data.image
-                  }
-                  alt=""
-                />
+              <div className='mb-3 text-center'>
+                <img width="70%" src={'https://blog-api-dzjv.onrender.com/images/' + data.image} alt="" />
               </div>
-              <h2 className="text-center fs-1">{data.title}</h2>
-              <p className="mt-4 fs-4">{data.description}</p>
-              <p className="fs-4">{data.description} </p>
+              <h2 className='text-center fs-1'>{data.title}</h2>
+              <p className='mt-4 fs-4'>{data.description}</p>
+              <p className='fs-4'>{data.description} </p>
 
-              <div className="d-flex mt-5  justify-content-between">
-                <div className="">
-                  <a
-                    href="/"
-                    className="text-dark fs-5 p-3 blog-btn rounded-0 fw-bold"
-                  >
-                    {" "}
-                    <FaArrowLeftLong /> Back To Home
-                  </a>
+              <div className="d-md-flex mt-md-5 mt-4  ">
+                <div className="col-md-6 col-12  d-flex justify-content-md-start justify-content-center">
+                  <a href="/" className="text-dark fs-5 p-3 blog-btn rounded-0 fw-bold"> <FaArrowLeftLong /> Back To Home</a>
                 </div>
-                <div className="d-flex">
-                  <Link
-                    onClick={() => Delet(data._id)}
-                    className="text-white me-2 fs-6 p-2 bg-dark rounded-0 fw-bold"
-                  >
-                    {" "}
-                    Delete
-                  </Link>
-                  <Link
-                    onClick={() => Update(data._id)}
-                    className="text-white me-2 fs-6 p-2 bg-dark rounded-0 fw-bold"
-                  >
-                    {" "}
-                    Update
-                  </Link>
+                <div className="col-md-6 col-12 mt-md-0 mt-4 d-flex justify-content-md-end justify-content-center">
+                  <Button onClick={() => Delet(data._id)} className="text-white me-2 fs-6 p-2 bg-dark rounded-0 fw-bold"> Delete</Button>
+                  <Button onClick={() => Update(data._id)} className="text-white me-2 fs-6 p-2 bg-dark rounded-0 fw-bold"> Update</Button>
+                  {/* <a className="text-white me-2 fs-6 p-2 bg-dark rounded-0 fw-bold"> Update</a> */}
                 </div>
+
               </div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   );
-};
-export default Blog;
+}
+export default Blog

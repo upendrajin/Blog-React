@@ -3,7 +3,7 @@
 
 // https://www.wix.com/website/templates/html/blog
 // https://www.wix.com/website-template/view/html/2135?originUrl=https%3A%2F%2Fwww.wix.com%2Fwebsite%2Ftemplates%2Fhtml%2Fblog%2F2&tpClick=view_button&esi=bbb09d69-d04f-44b0-81cf-e927b56f8c9a
-
+//This Is Now :-  https://preview.themeforest.net/item/writing-blog-personal-blog/full_screen_preview/11547928?_ga=2.54776299.1919763485.1713602304-574660015.1713602304
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -25,6 +25,7 @@ import Cblog from './Blog-API/Blog/Cblog';
 import Blog from './Blog-API/Blog/Blog';
 import Footer from './Blog-API/Footer';
 import Protect from './Blog-API/Protect/Protect';
+import About from './Blog-API/About';
 import Contact from './Blog-API/Contact';
 
 
@@ -60,7 +61,12 @@ function App() {
             <Blog></Blog>
           </Route>
 
-          <Route path="/contact-us">
+
+          <Route path="/about/us">
+            <About></About>
+          </Route>
+
+          <Route path="/contact">
             <Contact></Contact>
           </Route>
 
@@ -71,5 +77,8 @@ function App() {
   );
 }
 
+//  catagery.
+// logout
+// protect.
 
 export default App;
